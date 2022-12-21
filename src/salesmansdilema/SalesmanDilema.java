@@ -7,5 +7,6 @@ public class SalesmanDilema {
     	//Networking net = new Networking(0,null);
     	// ComputerHostSalesman ch = new ComputerHostSalesman();
         TravelingSalesman ts = new TravelingSalesman();
+        
     }
 }

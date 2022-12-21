@@ -17,11 +17,11 @@ class TSTracker {
 }
 
 public class TravelingSalesman {
-    int numCities = 13;
+    int numCities = 6;
     Map map;
     Grapher graph = null;
-    int seed = 0;
-    int worldDimension = 100;
+    int seed = 5;
+    int worldDimension = 1000;
         
     ArrayList<TSTracker> tst2 = new ArrayList<TSTracker>();
     ArrayList<Solution> allSols = new ArrayList<Solution>();
@@ -122,7 +122,8 @@ public class TravelingSalesman {
 
     	this.map = map;
         numCities = map.numberOfCities;
-        tst2.add(new TSTracker(numCities, new Test(this)));
+        //tst2.add(new TSTracker(numCities, new Test(this)));
+        tst2.add(new TSTracker(numCities, new FirstSolution(this)));
         // tst2.add(new TSTracker(numCities, new SolutionRandom(this)));
         // tst2.add(new TSTracker(numCities, new NearestNeighbor(this)));
         // tst2.add(new TSTracker(numCities, new NearestAndFlip(this)));
