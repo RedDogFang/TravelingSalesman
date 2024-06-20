@@ -2,7 +2,6 @@ package salesmansdilema;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
@@ -36,6 +35,7 @@ public class SolutionGrapher {
 			sizeTrace.addPoint(0, map.worldDimension);
 			sizeTrace.addPoint(0, 0);
 			sizeTrace.addPoint(map.worldDimension, 0);
+			sizeTrace.setName("Brian");
 			
 			startGraphing();
 		}
@@ -55,7 +55,7 @@ public class SolutionGrapher {
 		// add the chart to the frame: 
 		
 		frame.getContentPane().add(chart);
-		frame.setSize(600,600);
+		frame.setSize(500,500); // 1980x1080
 		// Enable the termination button [cross on the upper right edge]: 
 		frame.addWindowListener(
 				new WindowAdapter(){

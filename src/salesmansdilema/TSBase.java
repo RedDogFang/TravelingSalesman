@@ -8,6 +8,7 @@ public abstract class TSBase implements TSP, Runnable{
     Map map;
     String theDesc;
     boolean allDone = false;
+    long numberOfLengthsCalculated = 0;
         
     public String description(){
         return theDesc;
@@ -42,6 +43,7 @@ public abstract class TSBase implements TSP, Runnable{
             System.out.println(theDesc+" completed len: "+bestSolution.length);
         else
         	System.out.println(theDesc+" terminated (exceeded timeout)");
+        System.out.println(theDesc + ": "+numberOfLengthsCalculated + " lengths calculated");
         allDone = true;
     }
     

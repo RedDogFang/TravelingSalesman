@@ -17,10 +17,10 @@ class TSTracker {
 }
 
 public class TravelingSalesman {
-    int numCities = 13;
+    int numCities = 12; // brian
     Map map;
     Grapher graph = null;
-    int seed = 0;
+    int seed = 5; // -1 is random
     int worldDimension = 100;
         
     ArrayList<TSTracker> tst2 = new ArrayList<TSTracker>();
@@ -28,6 +28,9 @@ public class TravelingSalesman {
     
     public TravelingSalesman() throws InterruptedException {
     	//System.out.println("TravelingSalesman constructor");
+        if (seed == -1){
+            seed = (int) System.currentTimeMillis();
+        }
         MapGenerator mapGenerator = new MapGenerator();
         map = mapGenerator.GenerateMap(numCities, worldDimension, seed);
         start(map);
@@ -107,15 +110,15 @@ public class TravelingSalesman {
         }
 
         for (i = 0; i < numCities; i++){
+            // System.out.println( " "+map.cityDistances[solution.cities[i]][solution.cities[(i+1)%numCities]]);
             totalDistance += map.cityDistances[solution.cities[i]][solution.cities[(i+1)%numCities]];
         }
-        
         System.out.print("len: "+totalDistance+" indices:");
 
         for (i=0; i<numCities; i++) {
             System.out.print(" "+solution.cities[i]);
         }
-        System.out.println();
+        System.out.println(" Verified");
     }
     
     public void start(Map map) {
@@ -124,18 +127,18 @@ public class TravelingSalesman {
         numCities = map.numberOfCities;
         tst2.add(new TSTracker(numCities, new Test(this)));
         // tst2.add(new TSTracker(numCities, new SolutionRandom(this)));
-        // tst2.add(new TSTracker(numCities, new NearestNeighbor(this)));
-        // tst2.add(new TSTracker(numCities, new NearestAndFlip(this)));
+        // tst2.add(new TSTracker(numCities, new NearestNeighbor(this))); // brian
+        tst2.add(new TSTracker(numCities, new NearestAndFlip(this)));
         // tst2.add(new TSTracker(numCities, new Exhaustive(this)));
         // tst2.add(new TSTracker(numCities, new ExhaustiveRecurse(this)));
-//        tst2.add(new TSTracker(numCities, new Specific(this)));
+    //    tst2.add(new TSTracker(numCities, new Specific(this)));
         
         graph = new Grapher(tst2,map);
         
         for (TSTracker t: tst2){
             t.thrd.start();
         }
-    	long maxDuration = 10000; // millisecs
+    	long maxDuration = 600000; // millisecs Brian
         long maxSleepTime = 1000; // millisecs
         long start = System.currentTimeMillis();
         long end = start+maxDuration;
